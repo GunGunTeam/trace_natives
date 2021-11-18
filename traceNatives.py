@@ -61,16 +61,16 @@ class traceNatives(plugin_t):
                 pass
 
         so_path, so_name = getSoPathAndName()
-        search_result = [f"-a '{so_name}!{offset}'" for offset in search_result]
+        search_result = ["-a '{so_name}!{offset}'".format(so_name, offset) for offset in search_result]
         search_result = " ".join(search_result)
 
         script_name = so_name.split(".")[0] + "_" + str(int(time.time())) +".txt"
         save_path = os.path.join(so_path, script_name)
-        with open(save_path, "w", encoding="utf-8")as F:
+        with open(save_path, "w")as F:
             F.write(search_result)
 
         print("使用方法如下：")
-        print(f"frida-trace -UF -O {save_path}")
+        print("frida-trace -UF -O {save_path}".format(save_path))
 
     def term(self):
         pass
