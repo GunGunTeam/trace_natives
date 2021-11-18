@@ -61,7 +61,7 @@ class traceNatives(plugin_t):
                 pass
 
         so_path, so_name = getSoPathAndName()
-        search_result = ["-a '{so_name}!{offset}'".format(so_name, offset) for offset in search_result]
+        search_result = ["-a '{}!{}'".format(so_name, offset) for offset in search_result]
         search_result = " ".join(search_result)
 
         script_name = so_name.split(".")[0] + "_" + str(int(time.time())) +".txt"
@@ -70,7 +70,7 @@ class traceNatives(plugin_t):
             F.write(search_result)
 
         print("使用方法如下：")
-        print("frida-trace -UF -O {save_path}".format(save_path))
+        print("frida-trace -UF -O {}".format(save_path))
 
     def term(self):
         pass
